@@ -1,1 +1,16 @@
-console.log("hello worl");
+//customer clicks a button to add an item
+let cart = document.querySelectorAll('.addtocart');
+
+for (let i=0; i < cart.length; i++){
+	cart[i].addEventListener('click', () => {
+		console.log('added to cart');
+	});
+}
+
+
+//retrieve the value of the item 
+// - is this a multibuy?
+// - yes - are their multiple and do they qualify?
+//		- yes calculate the cost and calculate the previously added cost, work out the difference and add amount
+//		- no add amount
+// - no add amount
