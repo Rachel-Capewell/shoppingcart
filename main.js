@@ -1,6 +1,9 @@
 //customer clicks a button to add an item
 let cart = document.querySelectorAll('.addtocart');
 
+//in the absence of storing values this will keep the total in the current pageload
+let runningTotal = 0;
+
 //add the product values these would normally come from a db. Values can be changed more easily here rather than hard coding into the functions
 let products = [
 	{
@@ -39,8 +42,10 @@ for (let i=0; i < cart.length; i++){
 	});
 }
 
-let runningTotal = 0;
-
+//if the values were saved to local storage, they could be extracted and added here
+document.querySelector('.calculate').addEventListener('click', () => {
+	document.querySelector('.total span').textContent =  "£" + (runningTotal/100).toFixed(2);
+});
 
 function addToBasket(product){
 	//increase incart amount
@@ -66,7 +71,7 @@ function calculatePrice(product){
 
 function calculate(amount) {
 	runningTotal = runningTotal + amount;
-	document.querySelector('.runningtotal span').textContent = runningTotal;
+	document.querySelector('.runningtotal span').textContent = "£" + (runningTotal / 100).toFixed(2);
 }
 
 
