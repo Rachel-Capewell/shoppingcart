@@ -37,13 +37,33 @@ let products = [
 
 for (let i=0; i < cart.length; i++){
 	cart[i].addEventListener('click', () => {
-		console.log('added to cart');
+		addToBasket(products[i]);
 	});
 }
 
+let runningTotal = 0;
 
-//retrieve the value of the item 
-// - is this a multibuy?
+
+function addToBasket(product){
+	//increase incart amount
+	product.incart += 1;
+		
+	// - is this a multibuy?
+	if (product.multibuy === 0){
+		cost = product.price;
+	}else{
+		cost = calculate(product);
+	}
+	console.log(cost);
+	
+	//retrieve the value of the item 
+	function calculate(product){
+		if (product.incart === product.multibuy){
+			return product.multiprice - (product.price * (product.multibuy-1));
+		}
+		return product.price;
+	}
+}
 // - yes - are their multiple and do they qualify?
 //		- yes calculate the cost and calculate the previously added cost, work out the difference and add amount
 //		- no add amount
